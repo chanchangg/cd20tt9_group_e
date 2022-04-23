@@ -1,7 +1,7 @@
 <?php
 // Start the session
 session_start();
-
+// require_once './authvalidate.php';
 require_once 'models/UserModel.php';
 $userModel = new UserModel();
 
@@ -31,7 +31,12 @@ $users = $userModel->getUsers($params);
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Username</th>
-                        <th scope="col">Fullname</th>
+                        <th scope="col">Firstname</th>
+                        <th scope="col">Lastname</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Sex</th>
+                        <th scope="col">Bank id</th>
+                        <th scope="col">Email</th>
                         <th scope="col">Type</th>
                         <th scope="col">Actions</th>
                     </tr>
@@ -48,6 +53,33 @@ $users = $userModel->getUsers($params);
                             </td>
                             <td>
                                 <?php echo $user['last_name']?>
+                            </td>
+                            <td>
+                                <?php echo $user['phone']?>
+                            </td>
+                            <td>
+                                <?php
+                                 if($user['sex'] == 0){
+                                     echo "Male";
+                                 }else{
+                                     echo "Female";
+                                 }
+                                       
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                 if ($user['bank_id'] == null){
+                                     echo "Null";
+                                 }else{
+                                    echo $user['bank_id'];
+                                 }?>
+                            </td>
+                            <td>
+                                <?php echo $user['email']?>
+                            </td>
+                            <td>
+                                <?php echo $user['type']?>
                             </td>
                             <td>
                                 <a href="form_user.php?id=<?php echo $user['id'] ?>">
