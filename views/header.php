@@ -30,7 +30,7 @@ if(!empty($_GET['keyword'])) {
                     <li><a href="form_user.php">Add new user</a></li>
 
                 </ul>
-                <form class="navbar-form navbar-left">
+                <form class="navbar-form navbar-left" action="list_users.php">
                     <div class="form-group">
                         <input type="text" name="keyword" class="form-control" placeholder="Search users"
                                value="<?php echo $keyword ?>"
@@ -50,7 +50,8 @@ if(!empty($_GET['keyword'])) {
                              ?> <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="view_user.php?id=<?php echo $id ?>">Profile</a></li>
+                            <li><a href="view_update_user.php?id=<?php echo $id ?>">Profile</a></li>
+                            <li><a href="editUser.php?id=<?php echo $id ?>">Edit User</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="login.php">Login</a></li>
                             <li><a href="logout.php">Logout</a></li>

@@ -48,14 +48,22 @@ class UserModel extends BaseModel {
      * @param $input
      * @return mixed
      */
-    public function updateUser($input) {
-        $sql = 'UPDATE users SET 
-                 username = "' . $input['name'] .'", 
-                 password="'. md5($input['password']) .'"
-                WHERE id = ' . $input['id'];
-        $user = $this->update($sql);
+    public function updateUser($input, $id)
+    {
+        $fname = $input['first_name'];
+        $lname = $input['last_name'];
+        $phone = (int)$input['phone'] ;
+        $email = $input['email'];
+        $sex = (int)$input['sex'];
 
-        return $user;
+        $sql = 'UPDATE users SET 
+                 `first_name` = "' . $fname . '", 
+        `last_name` = "' . $lname . '",
+        `phone` = ' . $phone . ',
+        `email` = "' . $email . '",
+        `sex` = ' . $sex . '
+         WHERE `id` = ' . $id;
+        return $this->update($sql);
     }
 
     /**
@@ -85,7 +93,8 @@ class UserModel extends BaseModel {
             //Keep this line to use Sql Injection
             //Don't change
             //Example keyword: abcef%";TRUNCATE banks;##
-            $users = self::$_connection->multi_query($sql);
+//            $users = self::$_connection->multi_query($sql);
+            $users = $this->select($sql);
         } else {
             $sql = 'SELECT * FROM users';
             $users = $this->select($sql);
