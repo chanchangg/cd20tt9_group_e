@@ -32,7 +32,7 @@ if (!empty($_POST['submit'])) {
 <?php include 'views/header.php'?>
 <div class="container">
 
-    <?php if ($user || empty($id)) { ?>
+    <?php if ($user || !empty($id)) { ?>
         <div class="alert alert-warning" role="alert">
             User profile
         </div>
@@ -50,6 +50,9 @@ if (!empty($_POST['submit'])) {
                 <label for="password">Email</label>
                 <span><?php if (!empty($user[0]['username'])) echo $user[0]['email'] ?></span>
             </div>
+            <div class="form-group">
+                <a href="delete_user.php?id=<?php echo $user[0]['id'] ?>" class="confirmation">Delete</a>
+            </div>
         </form>
     <?php } else { ?>
         <div class="alert alert-success" role="alert">
@@ -57,5 +60,14 @@ if (!empty($_POST['submit'])) {
         </div>
     <?php } ?>
 </div>
+<script type="text/javascript">
+    var elems = document.getElementsByClassName('confirmation');
+    var confirmIt = function (e) {
+        if (!confirm('Are you sure?')) e.preventDefault();
+    }
+    for (var i = 0, l = elems.length; i < l; i++) {
+        elems[i].addEventListener('click', confirmIt, false);
+    }
+</script>
 </body>
 </html>
