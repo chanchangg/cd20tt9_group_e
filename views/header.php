@@ -29,7 +29,7 @@ if(!empty($_GET['keyword'])) {
 
                 </ul>
 <!--                asdas-->
-                <form class="navbar-form navbar-left" action="list_users.php">
+                <form class="navbar-form navbar-left" >
                     <div class="form-group">
                         <input type="text" name="keyword" class="form-control" placeholder="Search users"
                                value="<?php echo $keyword ?>"

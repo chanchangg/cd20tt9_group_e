@@ -16,9 +16,9 @@ if (!empty($_GET['id'])) {
 if (!empty($_POST['submit'])) {
 
     if (!empty($_id)) {
-        $userModel->updateUser($_POST);
+        $userModel->insertUser($user);
     } else {
-        $userModel->insertUser($_POST);
+        $userModel->insertUser($user);
     }
     header('location: list_users.php');
 }

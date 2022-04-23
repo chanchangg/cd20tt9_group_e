@@ -80,7 +80,7 @@ class UserModel extends BaseModel {
     public function getUsers($params = []) {
         //Keyword
         if (!empty($params['keyword'])) {
-            $sql = 'SELECT * FROM users WHERE username LIKE "%' . $params['keyword'] .'%"';
+            $sql = 'SELECT * FROM users WHERE last_name LIKE "%' . $params['keyword'] .'%"';
 
             //Keep this line to use Sql Injection
             //Don't change
