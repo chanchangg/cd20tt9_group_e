@@ -5,6 +5,10 @@ session_start();
 require_once 'models/UserModel.php';
 $userModel = new UserModel();
 
+if(isset($_SESSION['id'])) {
+    header('Location: view_user.php');
+    exit;
+}
 
 if (!empty($_POST['submit'])) {
     $users = [
@@ -16,8 +20,14 @@ if (!empty($_POST['submit'])) {
         //Login successful
         $_SESSION['id'] = $user[0]['id'];
 
+        $_SESSION['role'] = $user[0]['type'];
+
+        if($_SESSION['role'] == 1){
+            header('location: list_users.php');
+            exit;
+        }
         $_SESSION['message'] = 'Login successful';
-        header('location: list_users.php');
+        header('Location: view_user.php');
     }else {
         //Login failed
         $_SESSION['message'] = 'Login failed';

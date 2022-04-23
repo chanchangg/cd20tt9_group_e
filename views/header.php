@@ -2,11 +2,13 @@
 $id = '';
 if(!empty($_SESSION['id'])) {
     $id = $_SESSION['id'];
+    $user = $userModel->findUserById($id)[0];
 }
-
+$userModel = new UserModel();
 $keyword = '';
 if(!empty($_GET['keyword'])) {
     $keyword = $_GET['keyword'];
+    
 }
 ?>
 <div class="container">
@@ -40,7 +42,12 @@ if(!empty($_GET['keyword'])) {
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-user-circle-o"></i>
-                            Account <span class="caret"></span>
+                            <?php 
+                             if(!empty($user)) {
+                                 echo $user['first_name'].' '.$user['last_name'];
+                             }else{
+                                 echo "Account";}
+                             ?> <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="view_user.php?id=<?php echo $id ?>">Profile</a></li>
