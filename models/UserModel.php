@@ -95,6 +95,7 @@ class UserModel extends BaseModel {
             //Example keyword: abcef%";TRUNCATE banks;##
 //            $users = self::$_connection->multi_query($sql);
             $users = $this->select($sql);
+            //ttes
         } else {
             $sql = 'SELECT * FROM users';
             $users = $this->select($sql);
